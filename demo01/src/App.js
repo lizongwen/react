@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Button } from 'antd-mobile';
+import { Button, List } from 'antd-mobile';
 import './App.css';
 
 class App extends Component {
@@ -26,22 +26,22 @@ class Yy extends Component {
 		}
 		console.log('组件初始化');
 	}
-	componentWillMount(){
+	componentWillMount() {
 		console.log('组件马上加载');
 	}
-	componentDidMount(){
+	componentDidMount() {
 		console.log('组件加载完毕')
 	}
-	componentWillReceiveProps(nextProps){
+	componentWillReceiveProps(nextProps) {
 		console.log('组件要接受父组件的值了')
 	}
-	componentWillUpdate(){
+	componentWillUpdate() {
 		console.log('马上要更新组件')
 	}
-	componentDidUpdate(){
+	componentDidUpdate() {
 		console.log('马上更新完毕')
 	}
-	componentWillUnmount(){
+	componentWillUnmount() {
 		console.log('组件卸载了');
 	}
 	addSolder = () => {
@@ -55,11 +55,11 @@ class Yy extends Component {
 			<div>
 				<h2>{this.props.老大}</h2>
 				<Button type="primary" onClick={this.addSolder}>增加士兵</Button>
-				<ul>
+				<List renderHeader={() => '士兵列表'}>
 					{this.state.solders.map((item, index) => {
-						return <li key={index}>{item}</li>
+						return <List.Item key={index}>{item}</List.Item>
 					})}
-				</ul>
+				</List>
 			</div>
 		)
 	}
