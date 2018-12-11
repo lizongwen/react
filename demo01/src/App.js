@@ -42,7 +42,7 @@ class Yy extends Component {
 		console.log('马上更新完毕')
 	}
 	componentWillUnmount(){
-		console.log('组件卸载了')
+		console.log('组件卸载了');
 	}
 	addSolder = () => {
 		this.setState({
