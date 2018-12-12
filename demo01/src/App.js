@@ -3,12 +3,34 @@ import { Button, List } from 'antd-mobile';
 import './App.css';
 
 class App extends Component {
+	constructor(props) {
+		super(props);
+		this.state = {
+			Yyld: '张大喵1',
+			solders: ['兵4', '兵5', '兵6']
+		}
+	}
+	setSolders = (value) => {
+		this.setState({
+			solders: [...this.state.solders, value]
+		});
+	}
+	componentWillMount() {
+		// this.Yyld='张大喵1'
+	}
+	setBoss = () => {
+		console.log(666)
+		this.setState({
+			Yyld: '张大喵2'
+		})
+	}
 	render() {
 		const boss = '李云龙1'
 		return (
 			<div>
 				<h2>独立团,团长{this.props.老大}、{boss}</h2>
-				<Yy 老大='张大喵'></Yy>
+				<Button type="primary" onClick={this.setBoss}>修改一营老大</Button>
+				<Yy 老大={this.state.Yyld} 士兵组={this.state.solders} setSolders={this.setSolders}></Yy>
 				<Qbl 老大='孙得胜'></Qbl>
 			</div>
 		)
@@ -20,14 +42,17 @@ function Qbl(props) {
 }
 class Yy extends Component {
 	constructor(props) {
+		console.log(props)
 		super(props)
 		this.state = {
 			solders: ['兵1', '兵2', '兵3']
 		}
 		console.log('组件初始化');
+
 	}
 	componentWillMount() {
 		console.log('组件马上加载');
+		this.aaa = "中国";
 	}
 	componentDidMount() {
 		console.log('组件加载完毕')
@@ -44,19 +69,27 @@ class Yy extends Component {
 	componentWillUnmount() {
 		console.log('组件卸载了');
 	}
-	addSolder = () => {
-		this.setState({
-			solders: [...this.state.solders, '新兵']
-		})
+	// addSolder = () => {
+	// 	this.setState({
+	// 		solders: [...this.state.solders, '新兵']
+	// 	});
+	// }
+	setParentSolder(value){
+		console.log(value)
+		this.props.setSolders(value);
 	}
 	render() {
-		console.log('组件正在加载')
+		console.log('组件正在加载');
+		console.log(this.aaa)
+		console.log(this);
+		this.aaa = "美国"
 		return (
 			<div>
+				<div>{this.aaa}9999999</div>
 				<h2>{this.props.老大}</h2>
-				<Button type="primary" onClick={this.addSolder}>增加士兵</Button>
+				<Button type="primary" onClick={()=>this.setParentSolder(8888)}>增加士兵</Button>
 				<List renderHeader={() => '士兵列表'}>
-					{this.state.solders.map((item, index) => {
+					{this.props.士兵组.map((item, index) => {
 						return <List.Item key={index}>{item}</List.Item>
 					})}
 				</List>
