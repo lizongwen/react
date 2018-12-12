@@ -26,8 +26,19 @@ class App extends Component {
 	}
 	render() {
 		const boss = '李云龙1'
+		const store = this.props.store
+		const initNum = store.getState();
+		const addGun = this.props.addGun;
+		const removeGun = this.props.removeGun;
+		const addGunAsync = this.props.addGunAsync;
+		const removeGunAsync = this.props.removeGunAsync;
 		return (
 			<div>
+				<h1>现在有机枪{initNum}</h1>
+				<Button type="primary" onClick={() => store.dispatch(addGun())}>加武器</Button>
+				<Button type="primary" onClick={() => store.dispatch(removeGun())}>减武器</Button>
+				<Button type="primary" onClick={() => store.dispatch(addGunAsync())}>异步加武器</Button>
+				<Button type="primary" onClick={() => store.dispatch(removeGunAsync())}>异步减武器</Button>
 				<h2>独立团,团长{this.props.老大}、{boss}</h2>
 				<Button type="primary" onClick={this.setBoss}>修改一营老大</Button>
 				<Yy 老大={this.state.Yyld} 士兵组={this.state.solders} setSolders={this.setSolders}></Yy>
@@ -74,7 +85,7 @@ class Yy extends Component {
 	// 		solders: [...this.state.solders, '新兵']
 	// 	});
 	// }
-	setParentSolder(value){
+	setParentSolder(value) {
 		console.log(value)
 		this.props.setSolders(value);
 	}
@@ -87,7 +98,7 @@ class Yy extends Component {
 			<div>
 				<div>{this.aaa}9999999</div>
 				<h2>{this.props.老大}</h2>
-				<Button type="primary" onClick={()=>this.setParentSolder(8888)}>增加士兵</Button>
+				<Button type="primary" onClick={() => this.setParentSolder(8888)}>增加士兵</Button>
 				<List renderHeader={() => '士兵列表'}>
 					{this.props.士兵组.map((item, index) => {
 						return <List.Item key={index}>{item}</List.Item>
