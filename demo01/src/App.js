@@ -19,7 +19,6 @@ class App extends Component {
 		// this.Yyld='张大喵1'
 	}
 	setBoss = () => {
-		console.log(666)
 		this.setState({
 			Yyld: '张大喵2'
 		})

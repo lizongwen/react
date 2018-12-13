@@ -10,7 +10,6 @@ import * as serviceWorker from './serviceWorker';
 import { counter, addGun, removeGun, addGunAsync, removeGunAsync } from './index.redux'
 
 const reduxDevtools = window.devToolsExtension?window.devToolsExtension:()=>{};
-console.log(reduxDevtools)
 const store = createStore(counter, compose(applyMiddleware(thunk), reduxDevtools()));
 
 
