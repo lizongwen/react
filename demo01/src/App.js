@@ -1,7 +1,15 @@
 import React, { Component } from 'react';
 import { Button, List } from 'antd-mobile';
+import { connect } from 'react-redux';
+import { addGun, removeGun, addGunAsync, removeGunAsync } from './index.redux'
 import './App.css';
-
+const mapStatetoProps = (num) => {
+	console.log(num)
+	return { count: num }
+}
+const actionCreators = { addGun, removeGun, addGunAsync, removeGunAsync };
+// 你要的state变量放到props,你要的方法放到props
+// @connect((num) => ({count: num }),{ addGun, removeGun, addGunAsync, removeGunAsync })
 class App extends Component {
 	constructor(props) {
 		super(props);
@@ -24,23 +32,31 @@ class App extends Component {
 		})
 	}
 	render() {
+		console.log(this);
 		const boss = '李云龙1'
-		const store = this.props.store
-		const initNum = store.getState();
-		const addGun = this.props.addGun;
-		const removeGun = this.props.removeGun;
-		const addGunAsync = this.props.addGunAsync;
-		const removeGunAsync = this.props.removeGunAsync;
+		// const store = this.props.store
+		// const initNum = store.getState();
+		// const initNum = this.props.num;
+		// const addGun = this.props.addGun;
+		// const removeGun = this.props.removeGun;
+		// const addGunAsync = this.props.addGunAsync;
+		// const removeGunAsync = this.props.removeGunAsync;
 		return (
 			<div>
-				<h1>现在有机枪{initNum}</h1>
-				<Button type="primary" onClick={() => store.dispatch(addGun())}>加武器</Button>
+				<h1>现在有机枪{this.props.count}</h1>
+				{/* <Button type="primary" onClick={() => store.dispatch(addGun())}>加武器</Button>
 				<Button type="primary" onClick={() => store.dispatch(removeGun())}>减武器</Button>
 				<Button type="primary" onClick={() => store.dispatch(addGunAsync())}>异步加武器</Button>
-				<Button type="primary" onClick={() => store.dispatch(removeGunAsync())}>异步减武器</Button>
+				<Button type="primary" onClick={() => store.dispatch(removeGunAsync())}>异步减武器</Button> */}
+				<Button type="primary" onClick={this.props.addGun}>加武器</Button>
+				<Button type="primary" onClick={this.props.removeGun}>减武器</Button>
+				<Button type="primary" onClick={this.props.addGunAsync}>异步加武器</Button>
+				<Button type="primary" onClick={this.props.removeGunAsync}>异步减武器</Button>
 				<h2>独立团,团长{this.props.老大}、{boss}</h2>
 				<Button type="primary" onClick={this.setBoss}>修改一营老大</Button>
-				<Yy 老大={this.state.Yyld} 士兵组={this.state.solders} setSolders={this.setSolders}></Yy>
+				<Yy 老大={this.state.Yyld} 士兵组={this.state.solders} setSolders={this.setSolders} left={<h6>左边</h6>} right={<h6>右边</h6>}>
+					<h6>一营的子元素</h6>
+				</Yy>
 				<Qbl 老大='孙得胜'></Qbl>
 			</div>
 		)
@@ -52,7 +68,6 @@ function Qbl(props) {
 }
 class Yy extends Component {
 	constructor(props) {
-		console.log(props)
 		super(props)
 		this.state = {
 			solders: ['兵1', '兵2', '兵3']
@@ -62,7 +77,7 @@ class Yy extends Component {
 	}
 	componentWillMount() {
 		console.log('组件马上加载');
-		this.aaa = "中国";
+		this.country = "美国";
 	}
 	componentDidMount() {
 		console.log('组件加载完毕')
@@ -85,26 +100,27 @@ class Yy extends Component {
 	// 	});
 	// }
 	setParentSolder(value) {
-		console.log(value)
 		this.props.setSolders(value);
 	}
 	render() {
-		console.log('组件正在加载');
-		console.log(this.aaa)
 		console.log(this);
-		this.aaa = "美国"
+		console.log('组件正在加载');
+		this.country = "中国"
 		return (
 			<div>
-				<div>{this.aaa}9999999</div>
-				<h2>{this.props.老大}</h2>
+				<div>{this.country}9999999</div>
+				<h2>一营老大:{this.props.老大}</h2>
 				<Button type="primary" onClick={() => this.setParentSolder(8888)}>增加士兵</Button>
 				<List renderHeader={() => '士兵列表'}>
 					{this.props.士兵组.map((item, index) => {
 						return <List.Item key={index}>{item}</List.Item>
 					})}
 				</List>
+				{this.props.children}  {/* <h6>一营的子元素</h6> */}
+				{this.props.left}{this.props.right}
 			</div>
 		)
 	}
 }
+App = connect(mapStatetoProps, actionCreators)(App);
 export default App;
