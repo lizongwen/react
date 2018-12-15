@@ -2,14 +2,14 @@ const ADD_GUN = '加机关枪';
 const REMOVE_GUN = '减机关枪';
 
 //reducer
-export function counter(num = 0, action) {
+export function counter(state = 0, action) {
 	switch (action.type) {
 		case ADD_GUN:
-			return num + 1;
+			return state + 1;
 		case REMOVE_GUN:
-			return num - 1;
+			return state - 1;
 		default:
-			return num;
+			return state;
 	}
 }
 

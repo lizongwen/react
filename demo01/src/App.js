@@ -3,9 +3,8 @@ import { Button, List } from 'antd-mobile';
 import { connect } from 'react-redux';
 import { addGun, removeGun, addGunAsync, removeGunAsync } from './index.redux'
 import './App.css';
-const mapStatetoProps = (num) => {
-	console.log(num)
-	return { count: num }
+const mapStatetoProps = (state) => {
+	return { count: state.counter }
 }
 const actionCreators = { addGun, removeGun, addGunAsync, removeGunAsync };
 // 你要的state变量放到props,你要的方法放到props
@@ -32,7 +31,7 @@ class App extends Component {
 		})
 	}
 	render() {
-		console.log(this);
+		console.log(this.props);
 		const boss = '李云龙1'
 		// const store = this.props.store
 		// const initNum = store.getState();
@@ -72,7 +71,7 @@ class Yy extends Component {
 		this.state = {
 			solders: ['兵1', '兵2', '兵3']
 		}
-		console.log('组件初始化');
+		// console.log('组件初始化');
 
 	}
 	componentWillMount() {
@@ -80,19 +79,19 @@ class Yy extends Component {
 		this.country = "美国";
 	}
 	componentDidMount() {
-		console.log('组件加载完毕')
+		// console.log('组件加载完毕')
 	}
 	componentWillReceiveProps(nextProps) {
-		console.log('组件要接受父组件的值了')
+		// console.log('组件要接受父组件的值了')
 	}
 	componentWillUpdate() {
-		console.log('马上要更新组件')
+		// console.log('马上要更新组件')
 	}
 	componentDidUpdate() {
-		console.log('马上更新完毕')
+		// console.log('马上更新完毕')
 	}
 	componentWillUnmount() {
-		console.log('组件卸载了');
+		// console.log('组件卸载了');
 	}
 	// addSolder = () => {
 	// 	this.setState({
@@ -103,8 +102,8 @@ class Yy extends Component {
 		this.props.setSolders(value);
 	}
 	render() {
-		console.log(this);
-		console.log('组件正在加载');
+		// console.log(this);
+		// console.log('组件正在加载');
 		this.country = "中国"
 		return (
 			<div>
