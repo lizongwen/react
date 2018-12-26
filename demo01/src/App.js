@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, List } from 'antd-mobile';
 import { connect } from 'react-redux';
-import { addGun, removeGun, addGunAsync, removeGunAsync } from './index.redux'
+import { addGun, removeGun, addGunAsync, removeGunAsync } from './App.redux'
 import './App.css';
 const mapStatetoProps = (state) => {
 	return { count: state.counter }

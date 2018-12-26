@@ -9,8 +9,8 @@ import * as serviceWorker from './serviceWorker';
 import Auth from './Auth.js';
 import Dashboard from './Dashboard.js';
 
-// import { counter, addGun, removeGun, addGunAsync, removeGunAsync } from './index.redux'
-// import { counter } from './index.redux'
+// import { counter, addGun, removeGun, addGunAsync, removeGunAsync } from './App.redux'
+// import { counter } from './App.redux'
 import reducers from './reducer.js';//合并reducer
 
 
