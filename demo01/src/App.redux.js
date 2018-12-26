@@ -1,11 +1,11 @@
 const ADD_GUN = '加机关枪';
 const REMOVE_GUN = '减机关枪';
 
-//reducer
+//reducer 纯函数
 export function counter(state = 0, action) {
 	switch (action.type) {
 		case ADD_GUN:
-			return state + 1;
+			return state + action.num;
 		case REMOVE_GUN:
 			return state - 1;
 		default:
@@ -14,9 +14,10 @@ export function counter(state = 0, action) {
 }
 
 //action creator
-export function addGun() {
+export function addGun(num) {
 	return {
-		type: ADD_GUN
+		type: ADD_GUN,
+		num:num
 	}
 }
 export function removeGun() {

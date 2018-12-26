@@ -47,7 +47,7 @@ class App extends Component {
 				<Button type="primary" onClick={() => store.dispatch(removeGun())}>减武器</Button>
 				<Button type="primary" onClick={() => store.dispatch(addGunAsync())}>异步加武器</Button>
 				<Button type="primary" onClick={() => store.dispatch(removeGunAsync())}>异步减武器</Button> */}
-				<Button type="primary" onClick={this.props.addGun}>加武器</Button>
+				<Button type="primary" onClick={() =>this.props.addGun(10)}>加武器</Button>
 				<Button type="primary" onClick={this.props.removeGun}>减武器</Button>
 				<Button type="primary" onClick={this.props.addGunAsync}>异步加武器</Button>
 				<Button type="primary" onClick={this.props.removeGunAsync}>异步减武器</Button>
