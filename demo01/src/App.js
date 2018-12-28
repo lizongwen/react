@@ -3,10 +3,7 @@ import { Button, List } from 'antd-mobile';
 import { connect } from 'react-redux';
 import { addGun, removeGun, addGunAsync, removeGunAsync } from './App.redux'
 import './App.css';
-const mapStatetoProps = (state) => {
-	return { count: state.counter }
-}
-const actionCreators = { addGun, removeGun, addGunAsync, removeGunAsync };
+
 // 你要的state变量放到props,你要的方法放到props
 // @connect((num) => ({count: num }),{ addGun, removeGun, addGunAsync, removeGunAsync })
 class App extends Component {
@@ -47,6 +44,7 @@ class App extends Component {
 				<Button type="primary" onClick={() => store.dispatch(removeGun())}>减武器</Button>
 				<Button type="primary" onClick={() => store.dispatch(addGunAsync())}>异步加武器</Button>
 				<Button type="primary" onClick={() => store.dispatch(removeGunAsync())}>异步减武器</Button> */}
+				{/* <Button type="primary" onClick={() => store.dispatch(addGun())}>加武器</Button> */}
 				<Button type="primary" onClick={() =>this.props.addGun(10)}>加武器</Button>
 				<Button type="primary" onClick={this.props.removeGun}>减武器</Button>
 				<Button type="primary" onClick={this.props.addGunAsync}>异步加武器</Button>
@@ -121,5 +119,10 @@ class Yy extends Component {
 		)
 	}
 }
+
+const mapStatetoProps = (state) => {
+	return { count: state.counter }
+}
+const actionCreators = { addGun, removeGun, addGunAsync, removeGunAsync };
 App = connect(mapStatetoProps, actionCreators)(App);
 export default App;
