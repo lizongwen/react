@@ -15,9 +15,19 @@ export function counter(state = 0, action) {
 
 //action creator
 export function addGun(num) {
+	console.log(arguments)
 	return {
 		type: ADD_GUN,
-		num:num
+		num: num
+	}
+}
+export function addGun1(num) {
+	console.log(arguments)
+	return dispatch => {
+		dispatch({
+			type: ADD_GUN,
+			num: num
+		})
 	}
 }
 export function removeGun() {
@@ -26,18 +36,18 @@ export function removeGun() {
 	}
 }
 
-export function addGunAsync() {
+export function addGunAsync(num) {
 	return dispatch => {
-		setTimeout(() => {
-			dispatch(addGun())
-		}, 2000)
+		// setTimeout(() => {
+		dispatch(addGun(num))
+		// }, 2000)
 	}
 }
 
 export function removeGunAsync() {
 	return dispatch => {
-		setTimeout(() => {
-			dispatch(removeGun())
-		}, 3000)
+		// setTimeout(() => {
+		dispatch(removeGun())
+		// }, 3000)
 	}
 }

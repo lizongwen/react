@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Button, List } from 'antd-mobile';
 import { connect } from 'react-redux';
-import { addGun, removeGun, addGunAsync, removeGunAsync } from './App.redux'
+import { addGun,addGun1, removeGun, addGunAsync, removeGunAsync } from './App.redux'
 import './App.css';
 
 // 你要的state变量放到props,你要的方法放到props
@@ -45,9 +45,10 @@ class App extends Component {
 				<Button type="primary" onClick={() => store.dispatch(addGunAsync())}>异步加武器</Button>
 				<Button type="primary" onClick={() => store.dispatch(removeGunAsync())}>异步减武器</Button> */}
 				{/* <Button type="primary" onClick={() => store.dispatch(addGun())}>加武器</Button> */}
-				<Button type="primary" onClick={() =>this.props.addGun(10)}>加武器</Button>
+				<Button type="primary" onClick={() =>{console.log(this.props.addGun);this.props.addGun(10)}}>加武器1</Button>
+				<Button type="primary" onClick={() =>{console.log(this.props.addGun1);this.props.addGun1(10)}}>加武器2</Button>
 				<Button type="primary" onClick={this.props.removeGun}>减武器</Button>
-				<Button type="primary" onClick={this.props.addGunAsync}>异步加武器</Button>
+				<Button type="primary" onClick={() =>this.props.addGunAsync(10)}>异步加武器</Button>
 				<Button type="primary" onClick={this.props.removeGunAsync}>异步减武器</Button>
 				<h2>独立团,团长{this.props.老大}、{boss}</h2>
 				<Button type="primary" onClick={this.setBoss}>修改一营老大</Button>
@@ -123,6 +124,14 @@ class Yy extends Component {
 const mapStatetoProps = (state) => {
 	return { count: state.counter }
 }
-const actionCreators = { addGun, removeGun, addGunAsync, removeGunAsync };
+const mapDispatchToprops = dispatch => ({
+	addGun: num => dispatch(addGun(num)),
+	addGun1: num => dispatch(addGun1(num)),
+	removeGun:()=>dispatch(removeGun()),
+	addGunAsync:num=>dispatch(addGunAsync(num)),
+	removeGunAsync:()=>dispatch(removeGunAsync()),
+})
+const actionCreators = { addGun, addGun1,removeGun, addGunAsync, removeGunAsync };
 App = connect(mapStatetoProps, actionCreators)(App);
+App = connect(mapStatetoProps, mapDispatchToprops)(App);
 export default App;
