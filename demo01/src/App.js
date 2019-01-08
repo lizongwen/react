@@ -133,5 +133,6 @@ const mapDispatchToprops = dispatch => ({
 })
 const actionCreators = { addGun, addGun1,removeGun, addGunAsync, removeGunAsync };
 App = connect(mapStatetoProps, actionCreators)(App);
-App = connect(mapStatetoProps, mapDispatchToprops)(App);
+//或者下面这种写法
+// App = connect(mapStatetoProps, mapDispatchToprops)(App);
 export default App;

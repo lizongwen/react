@@ -13,7 +13,8 @@ export function counter(state = 0, action) {
 	}
 }
 
-//action creator
+//action创建函数的两种写法
+//1
 export function addGun(num) {
 	console.log(arguments)
 	return {
@@ -21,6 +22,7 @@ export function addGun(num) {
 		num: num
 	}
 }
+//2
 export function addGun1(num) {
 	console.log(arguments)
 	return dispatch => {
